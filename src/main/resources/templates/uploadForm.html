@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div>
+		<h2>File Promotion upload</h2>
+	</div>
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/usageUpload">
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div th:if="${not #lists.isEmpty(files)}">
+		<h4>Export Mobile usage </h4>
+	</div>
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li>
+		</ul>
+	</div>
+	
+	<div>
+		<h2>File Gson upload</h2>
+	</div>
+	
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/jsonUpload">
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="jsonfile" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+	
+	<div th:if="${mpList}">
+		<table>
+			<tr>
+				<td>MobileNo</td><td>Price</td>
+			</tr>
+			<tr th:each="mp: ${mpList}">
+	   			 <td th:text="${mp.mobileNo}" /><td th:text="${mp.price}" />
+			</tr>
+		</table>
+		
+	</div>
+
+</body>
+</html>
